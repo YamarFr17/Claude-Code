@@ -3,39 +3,43 @@ export default function Hero() {
     <section className="hero" id="hero">
       <div className="hero-bg" />
       <div className="container hero-content">
-        <span className="badge">Disponible pour toute intervention</span>
+        <span className="badge">Infogérance &amp; interventions IT — Disponible 7j/7</span>
 
         <h1>
-          Votre expert en{' '}
-          <span className="gradient-text">systèmes</span>{' '}
-          &amp;{' '}
-          <span className="gradient-text">réseaux</span>
+          Sécurisez, optimisez &amp;<br />
+          <span className="gradient-text">faites évoluer</span> votre IT
         </h1>
 
         <p className="hero-sub">
-          Installations OS, câblage réseau, infrastructure IT et administration systèmes —<br />
-          des solutions professionnelles accessibles à tous.
+          Expert en systèmes et réseaux, j'accompagne les particuliers et les entreprises
+          dans leurs projets informatiques — installation OS, câblage, infogérance
+          et transformation digitale.
         </p>
 
         <div className="hero-cta">
-          <a href="#services" className="btn btn-primary">Découvrir les services</a>
-          <a href="#contact" className="btn btn-outline">Demander un devis</a>
+          <a href="#contact" className="btn btn-primary">Demander un devis gratuit</a>
+          <a href="#services" className="btn btn-outline">Découvrir les services</a>
         </div>
 
         <div className="hero-stats">
           <div className="stat">
-            <span className="stat-num">Windows</span>
-            <span className="stat-label">&amp; Linux</span>
+            <span className="stat-num">Windows &amp; Linux</span>
+            <span className="stat-label">Toutes distributions</span>
           </div>
           <div className="divider" />
           <div className="stat">
-            <span className="stat-num">Réseau</span>
-            <span className="stat-label">Câblage &amp; Infra</span>
+            <span className="stat-num">Réseau &amp; Infra</span>
+            <span className="stat-label">Câblage · Switches · Wi-Fi</span>
           </div>
           <div className="divider" />
           <div className="stat">
-            <span className="stat-num">Admin</span>
-            <span className="stat-label">Sys &amp; Réseau</span>
+            <span className="stat-num">Infogérance</span>
+            <span className="stat-label">Supervision temps réel</span>
+          </div>
+          <div className="divider" />
+          <div className="stat">
+            <span className="stat-num">SMACS</span>
+            <span className="stat-label">Transformation digitale</span>
           </div>
         </div>
       </div>

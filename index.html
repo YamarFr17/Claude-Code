@@ -9,6 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <!-- Netlify Forms detection (hidden, required for SPA) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="phone" />
+      <select name="service"></select>
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -12,7 +12,7 @@ const INFO_ITEMS = [
   },
   {
     label: 'Email',
-    value: 'Via le formulaire ci-contre',
+    value: 'Réponse sous 24h',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -22,7 +22,7 @@ const INFO_ITEMS = [
   },
   {
     label: 'Disponibilité',
-    value: '7j/7 — Réponse sous 24h',
+    value: '7j/7 — Supervision continue',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20">
         <circle cx="12" cy="12" r="10"/>
@@ -42,11 +42,20 @@ const INFO_ITEMS = [
   },
 ]
 
+const encode = data =>
+  Object.keys(data)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+    .join('&')
+
 export default function Contact() {
-  const [fields, setFields] = useState({ name: '', email: '', service: '', message: '' })
+  const [fields, setFields] = useState({
+    name: '', email: '', phone: '', service: '', message: '',
+    'bot-field': '',
+  })
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
+  const [serverError, setServerError] = useState(false)
 
   const validate = () => {
     const e = {}
@@ -64,10 +73,19 @@ export default function Contact() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const e2 = validate()
-    if (Object.keys(e2).length) { setErrors(e2); return }
+    const errs = validate()
+    if (Object.keys(errs).length) { setErrors(errs); return }
+
     setLoading(true)
-    setTimeout(() => { setLoading(false); setSent(true) }, 1200)
+    setServerError(false)
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', ...fields }),
+    })
+      .then(() => { setLoading(false); setSent(true) })
+      .catch(() => { setLoading(false); setServerError(true) })
   }
 
   return (
@@ -76,21 +94,38 @@ export default function Contact() {
         <div className="section-header">
           <span className="tag">Me contacter</span>
           <h2>Parlons de votre projet</h2>
-          <p>Décrivez-moi votre besoin, je vous réponds rapidement avec une proposition adaptée.</p>
+          <p>Décrivez votre besoin — je vous réponds sous 24h avec une proposition adaptée et un devis gratuit.</p>
         </div>
 
         <div className="contact-wrapper">
           {sent ? (
             <div className="contact-form form-sent">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="48">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="52">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
               <h3>Message envoyé !</h3>
               <p>Je vous répondrai dans les 24h. Merci de votre confiance.</p>
+              <button className="btn btn-outline" onClick={() => { setSent(false); setFields({ name:'', email:'', phone:'', service:'', message:'', 'bot-field':'' }) }}>
+                Envoyer un autre message
+              </button>
             </div>
           ) : (
-            <form className="contact-form" onSubmit={handleSubmit} noValidate>
+            <form
+              className="contact-form"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              noValidate
+            >
+              {/* Netlify hidden fields */}
+              <input type="hidden" name="form-name" value="contact" />
+              <p hidden>
+                <label>Ne pas remplir : <input name="bot-field" value={fields['bot-field']} onChange={handleChange} /></label>
+              </p>
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Nom / Entreprise *</label>
@@ -112,27 +147,43 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="service">Service souhaité</label>
-                <select id="service" name="service" value={fields.service} onChange={handleChange}>
-                  <option value="">— Sélectionnez un service —</option>
-                  <option value="os">Installation OS (Windows / Linux)</option>
-                  <option value="reseau">Câblage réseau &amp; infrastructure</option>
-                  <option value="admin">Administration systèmes &amp; réseaux</option>
-                  <option value="projet">Projet IT / Audit</option>
-                  <option value="autre">Autre</option>
-                </select>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="phone">Téléphone</label>
+                  <input
+                    id="phone" name="phone" type="tel"
+                    placeholder="+33 6 00 00 00 00"
+                    value={fields.phone} onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="service">Service souhaité</label>
+                  <select id="service" name="service" value={fields.service} onChange={handleChange}>
+                    <option value="">— Sélectionnez —</option>
+                    <option value="infogerance">Infogérance &amp; supervision</option>
+                    <option value="os">Installation OS (Windows / Linux)</option>
+                    <option value="reseau">Câblage réseau &amp; infrastructure</option>
+                    <option value="admin">Administration systèmes &amp; réseaux</option>
+                    <option value="securite">Sécurité réseau &amp; audit</option>
+                    <option value="projet">Projet IT / Transformation digitale</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
               </div>
 
               <div className="form-group">
                 <label htmlFor="message">Décrivez votre besoin *</label>
                 <textarea
                   id="message" name="message" rows="5"
-                  placeholder="Expliquez votre situation, vos contraintes, vos objectifs…"
+                  placeholder="Expliquez votre situation, vos contraintes, votre infrastructure actuelle…"
                   value={fields.message} onChange={handleChange}
                   className={errors.message ? 'invalid' : ''}
                 />
               </div>
+
+              {serverError && (
+                <p className="form-error">Une erreur est survenue. Veuillez réessayer ou me contacter directement.</p>
+              )}
 
               <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
                 <span>{loading ? 'Envoi en cours…' : 'Envoyer ma demande'}</span>
@@ -142,12 +193,15 @@ export default function Contact() {
                   </svg>
                 )}
               </button>
-              <p className="form-note">* Champs obligatoires — Réponse sous 24h</p>
+              <p className="form-note">* Champs obligatoires — Devis gratuit — Réponse sous 24h</p>
             </form>
           )}
 
           <div className="contact-info">
-            <h3>Ou contactez-moi directement</h3>
+            <h3>Contactez-moi directement</h3>
+            <p className="contact-info-sub">
+              Disponible pour tout type d'intervention, du simple dépannage au projet d'infrastructure complet.
+            </p>
             {INFO_ITEMS.map(item => (
               <div key={item.label} className="info-item">
                 <div className="info-icon">{item.icon}</div>
@@ -157,6 +211,20 @@ export default function Contact() {
                 </div>
               </div>
             ))}
+            <div className="contact-guarantee">
+              <div className="guarantee-item">
+                <span className="guarantee-icon">✓</span>
+                <span>Devis gratuit &amp; sans engagement</span>
+              </div>
+              <div className="guarantee-item">
+                <span className="guarantee-icon">✓</span>
+                <span>Tarification transparente</span>
+              </div>
+              <div className="guarantee-item">
+                <span className="guarantee-icon">✓</span>
+                <span>Suivi post-intervention inclus</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
