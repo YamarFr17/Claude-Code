@@ -84,6 +84,39 @@ p  { color: var(--muted); }
   background-clip: text;
 }
 
+/* ---- Back to top ---- */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 200;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(79,142,247,.4);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity var(--tr), transform var(--tr), background var(--tr);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.back-to-top:hover {
+  background: #3b7de8;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 28px rgba(79,142,247,.55);
+}
+
 /* ---- Logo Y ---- */
 .logo-y {
   color: #ffffff;

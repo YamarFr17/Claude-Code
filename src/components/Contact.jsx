@@ -8,7 +8,7 @@ const PUBLIC_KEY  = 'Gt2-B7aZlUgJnk1Bd'
 const INFO_ITEMS = [
   {
     label: 'Email',
-    value: 'diyamar@gmail.com',
+    value: 'faralahyyamarodin@gmail.com',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -89,7 +89,7 @@ export default function Contact() {
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, { publicKey: PUBLIC_KEY })
       setSent(true)
     } catch (err) {
-      setServerError('Erreur d\'envoi. Contactez-moi directement à diyamar@gmail.com')
+      setServerError('Erreur d\'envoi. Contactez-moi directement à faralahyyamarodin@gmail.com')
       console.error('EmailJS error:', err)
     } finally {
       setLoading(false)
