@@ -86,7 +86,7 @@ p  { color: var(--muted); }
 
 /* ---- Logo Y ---- */
 .logo-y {
-  color: var(--accent);
+  color: #ffffff;
   font-weight: 800;
 }
 

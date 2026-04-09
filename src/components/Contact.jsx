@@ -1,6 +1,21 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
+
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const INFO_ITEMS = [
+  {
+    label: 'Email',
+    value: 'faralahyyamarodin@gmail.com',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    ),
+  },
   {
     label: 'Téléphone',
     value: 'Disponible sur demande',
@@ -11,18 +26,8 @@ const INFO_ITEMS = [
     ),
   },
   {
-    label: 'Email',
-    value: 'Réponse sous 24h',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-    ),
-  },
-  {
     label: 'Disponibilité',
-    value: '7j/7 — Supervision continue',
+    value: '7j/7 — Réponse sous 24h',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20">
         <circle cx="12" cy="12" r="10"/>
@@ -42,26 +47,21 @@ const INFO_ITEMS = [
   },
 ]
 
-const encode = data =>
-  Object.keys(data)
-    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-    .join('&')
-
 export default function Contact() {
+  const formRef = useRef(null)
   const [fields, setFields] = useState({
-    name: '', email: '', phone: '', service: '', message: '',
-    'bot-field': '',
+    from_name: '', from_email: '', phone: '', service: '', message: '',
   })
-  const [errors, setErrors] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [sent, setSent] = useState(false)
-  const [serverError, setServerError] = useState(false)
+  const [errors, setErrors]       = useState({})
+  const [loading, setLoading]     = useState(false)
+  const [sent, setSent]           = useState(false)
+  const [serverError, setServerError] = useState('')
 
   const validate = () => {
     const e = {}
-    if (!fields.name.trim()) e.name = true
-    if (!fields.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = true
-    if (!fields.message.trim()) e.message = true
+    if (!fields.from_name.trim())  e.from_name = true
+    if (!fields.from_email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.from_email)) e.from_email = true
+    if (!fields.message.trim())    e.message = true
     return e
   }
 
@@ -69,23 +69,38 @@ export default function Contact() {
     const { name, value } = e.target
     setFields(f => ({ ...f, [name]: value }))
     if (errors[name]) setErrors(er => ({ ...er, [name]: false }))
+    if (serverError) setServerError('')
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
 
-    setLoading(true)
-    setServerError(false)
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setServerError('Configuration EmailJS manquante. Veuillez configurer les variables d\'environnement.')
+      return
+    }
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...fields }),
-    })
-      .then(() => { setLoading(false); setSent(true) })
-      .catch(() => { setLoading(false); setServerError(true) })
+    setLoading(true)
+    setServerError('')
+
+    try {
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, { publicKey: PUBLIC_KEY })
+      setSent(true)
+    } catch (err) {
+      setServerError('Erreur d\'envoi. Contactez-moi directement à faralahyyamarodin@gmail.com')
+      console.error('EmailJS error:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const reset = () => {
+    setSent(false)
+    setFields({ from_name: '', from_email: '', phone: '', service: '', message: '' })
+    setErrors({})
+    setServerError('')
   }
 
   return (
@@ -106,43 +121,32 @@ export default function Contact() {
               </svg>
               <h3>Message envoyé !</h3>
               <p>Je vous répondrai dans les 24h. Merci de votre confiance.</p>
-              <button className="btn btn-outline" onClick={() => { setSent(false); setFields({ name:'', email:'', phone:'', service:'', message:'', 'bot-field':'' }) }}>
+              <button className="btn btn-outline" onClick={reset}>
                 Envoyer un autre message
               </button>
             </div>
           ) : (
-            <form
-              className="contact-form"
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
-              noValidate
-            >
-              {/* Netlify hidden fields */}
-              <input type="hidden" name="form-name" value="contact" />
-              <p hidden>
-                <label>Ne pas remplir : <input name="bot-field" value={fields['bot-field']} onChange={handleChange} /></label>
-              </p>
+            <form ref={formRef} className="contact-form" onSubmit={handleSubmit} noValidate>
+              {/* Hidden field — destinataire pour le template EmailJS */}
+              <input type="hidden" name="to_email" value="faralahyyamarodin@gmail.com" />
 
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="name">Nom / Entreprise *</label>
+                  <label htmlFor="from_name">Nom / Entreprise *</label>
                   <input
-                    id="name" name="name" type="text"
+                    id="from_name" name="from_name" type="text"
                     placeholder="Jean Dupont"
-                    value={fields.name} onChange={handleChange}
-                    className={errors.name ? 'invalid' : ''}
+                    value={fields.from_name} onChange={handleChange}
+                    className={errors.from_name ? 'invalid' : ''}
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">Email *</label>
+                  <label htmlFor="from_email">Email *</label>
                   <input
-                    id="email" name="email" type="email"
+                    id="from_email" name="from_email" type="email"
                     placeholder="jean@exemple.com"
-                    value={fields.email} onChange={handleChange}
-                    className={errors.email ? 'invalid' : ''}
+                    value={fields.from_email} onChange={handleChange}
+                    className={errors.from_email ? 'invalid' : ''}
                   />
                 </div>
               </div>
@@ -160,13 +164,13 @@ export default function Contact() {
                   <label htmlFor="service">Service souhaité</label>
                   <select id="service" name="service" value={fields.service} onChange={handleChange}>
                     <option value="">— Sélectionnez —</option>
-                    <option value="infogerance">Infogérance &amp; supervision</option>
-                    <option value="os">Installation OS (Windows / Linux)</option>
-                    <option value="reseau">Câblage réseau &amp; infrastructure</option>
-                    <option value="admin">Administration systèmes &amp; réseaux</option>
-                    <option value="securite">Sécurité réseau &amp; audit</option>
-                    <option value="projet">Projet IT / Transformation digitale</option>
-                    <option value="autre">Autre</option>
+                    <option value="Infogérance & supervision">Infogérance &amp; supervision</option>
+                    <option value="Installation OS">Installation OS (Windows / Linux)</option>
+                    <option value="Câblage réseau & infrastructure">Câblage réseau &amp; infrastructure</option>
+                    <option value="Administration systèmes & réseaux">Administration systèmes &amp; réseaux</option>
+                    <option value="Sécurité réseau & audit">Sécurité réseau &amp; audit</option>
+                    <option value="Projets IT & transformation digitale">Projets IT &amp; transformation digitale</option>
+                    <option value="Autre">Autre</option>
                   </select>
                 </div>
               </div>
@@ -181,9 +185,7 @@ export default function Contact() {
                 />
               </div>
 
-              {serverError && (
-                <p className="form-error">Une erreur est survenue. Veuillez réessayer ou me contacter directement.</p>
-              )}
+              {serverError && <p className="form-error">{serverError}</p>}
 
               <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
                 <span>{loading ? 'Envoi en cours…' : 'Envoyer ma demande'}</span>
