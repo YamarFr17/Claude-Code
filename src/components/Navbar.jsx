@@ -17,11 +17,12 @@ export default function Navbar() {
       <div className="container nav-inner">
         <a href="#hero" className="logo" onClick={closeMenu}>
           <span className="logo-icon">⚡</span>
-          <span>IT<strong>Services</strong></span>
+          <span><span className="logo-y">Y</span>it<strong>Services</strong></span>
         </a>
 
         <ul className={`nav-links${open ? ' open' : ''}`}>
           <li><a href="#services" onClick={closeMenu}>Services</a></li>
+          <li><a href="#engagements" onClick={closeMenu}>Engagements</a></li>
           <li><a href="#about" onClick={closeMenu}>À propos</a></li>
           <li><a href="#contact" className="btn-nav" onClick={closeMenu}>Contact</a></li>
         </ul>

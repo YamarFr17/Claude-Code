@@ -61,8 +61,8 @@ const SERVICES = [
   },
   {
     color: '#06b6d4',
-    title: 'Transformation digitale (SMACS)',
-    desc: "Accompagnement stratégique dans votre transformation digitale selon les 5 piliers SMACS : Social, Mobile, Analytics, Cloud et Security. De l'audit à la mise en œuvre, pour les PME et grands comptes.",
+    title: 'Projets IT & transformation digitale',
+    desc: "Accompagnement de A à Z dans vos projets de transformation digitale : migration Cloud, mobilité, analytics et sécurité. De l'audit stratégique au déploiement, pour les PME et grands comptes.",
     features: ['Audit & conseil stratégique IT', 'Migration Cloud & hybride', 'Mobilité & solutions collaboratives', 'Formation & conduite du changement'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">

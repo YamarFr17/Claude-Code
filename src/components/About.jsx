@@ -1,10 +1,16 @@
-const TECHS = ['Linux', 'Windows', 'TCP/IP', 'Cisco', 'VPN', 'Active Directory', 'RJ45 / Fibre', 'Virtualisation']
+const TECHS = [
+  'Linux', 'Windows Server', 'TCP/IP', 'Cisco',
+  'VPN', 'Active Directory', 'RJ45 / Fibre', 'Virtualisation',
+  'Cloud', 'Firewall', 'Wi-Fi', 'DHCP / DNS',
+]
 
 const HIGHLIGHTS = [
-  'Interventions sur site ou à distance',
-  'Disponible pour particuliers & professionnels',
-  'Tarifs transparents, devis gratuit',
-  'Support post-intervention inclus',
+  { icon: '🖥️', text: 'Interventions sur site & à distance' },
+  { icon: '🏢', text: 'Particuliers, PME & grands comptes' },
+  { icon: '📄', text: 'Devis gratuit & tarifs transparents' },
+  { icon: '🔁', text: 'Suivi post-intervention inclus' },
+  { icon: '⚡', text: 'Réactivité 24h garantie' },
+  { icon: '🔒', text: 'Confidentialité & sécurité des données' },
 ]
 
 export default function About() {
@@ -21,33 +27,54 @@ export default function About() {
               </svg>
             </div>
             <div className="about-card-text">
-              <strong>Technicien IT</strong>
+              <strong>Technicien IT — YitServices</strong>
               <span>Systèmes &amp; Réseaux</span>
             </div>
           </div>
+
+          <div className="about-xp-bar">
+            <div className="xp-item">
+              <span className="xp-label">Systèmes (Windows / Linux)</span>
+              <div className="xp-track"><div className="xp-fill" style={{ '--w': '95%', '--color': '#4f8ef7' }} /></div>
+            </div>
+            <div className="xp-item">
+              <span className="xp-label">Réseaux &amp; Infrastructure</span>
+              <div className="xp-track"><div className="xp-fill" style={{ '--w': '90%', '--color': '#22c55e' }} /></div>
+            </div>
+            <div className="xp-item">
+              <span className="xp-label">Sécurité &amp; Firewall</span>
+              <div className="xp-track"><div className="xp-fill" style={{ '--w': '85%', '--color': '#f59e0b' }} /></div>
+            </div>
+            <div className="xp-item">
+              <span className="xp-label">Cloud &amp; Virtualisation</span>
+              <div className="xp-track"><div className="xp-fill" style={{ '--w': '80%', '--color': '#a855f7' }} /></div>
+            </div>
+          </div>
+
           <div className="about-tech-pills">
             {TECHS.map(t => <span key={t}>{t}</span>)}
           </div>
         </div>
 
         <div className="about-text">
-          <span className="tag">À propos</span>
-          <h2>Passionné par l'IT, à votre service</h2>
+          <span className="tag">À propos de YitServices</span>
+          <h2>Une expertise IT au service de votre réussite</h2>
           <p>
-            Technicien spécialisé en systèmes et réseaux, j'interviens aussi bien chez les
-            particuliers que dans les entreprises pour tout ce qui touche à l'informatique
-            et aux infrastructures réseau.
+            YitServices est né de la conviction que chaque structure — petite ou grande — mérite
+            un accès à des services informatiques de qualité professionnelle, sans complexité
+            et à prix juste.
           </p>
           <p>
-            Que vous ayez besoin d'installer un système d'exploitation, de mettre en place
-            un réseau d'entreprise ou de gérer votre parc informatique, je m'adapte à votre
-            environnement et à vos contraintes pour vous fournir une solution fiable et pérenne.
+            Technicien spécialisé en systèmes et réseaux, j'interviens sur tout type
+            d'environnement : poste de travail, serveur d'entreprise, infrastructure réseau
+            complète ou simple câblage. Chaque mission est traitée avec le même niveau
+            d'exigence, quelle que soit sa taille.
           </p>
           <div className="about-highlights">
             {HIGHLIGHTS.map(h => (
-              <div key={h} className="highlight-item">
-                <span className="hl-icon">✓</span>
-                <span>{h}</span>
+              <div key={h.text} className="highlight-item">
+                <span className="hl-emoji">{h.icon}</span>
+                <span>{h.text}</span>
               </div>
             ))}
           </div>

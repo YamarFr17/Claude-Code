@@ -2,6 +2,16 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "22"
+
+[[forms]]
+  name = "contact"
+
+[forms.notifications.email]
+  to = "faralahyyamarodin@gmail.com"
+  subject = "Nouvelle demande — YitServices"
+
 [[headers]]
   for = "/*"
   [headers.values]
