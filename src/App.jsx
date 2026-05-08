@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import BackToTop from './components/BackToTop'
+import WhatsAppButton from './components/WhatsAppButton'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
 import Services from './components/Services'
@@ -26,6 +27,7 @@ export default function App() {
       </main>
       <Footer />
       <BackToTop />
+      <WhatsAppButton />
     </>
   )
 }

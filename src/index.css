@@ -121,6 +121,29 @@ p  { color: var(--muted); }
   box-shadow: 0 6px 28px rgba(79,142,247,.55);
 }
 
+/* WhatsApp floating button */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  z-index: 200;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(37,211,102,.45);
+  transition: background var(--tr), transform var(--tr), box-shadow var(--tr);
+}
+.whatsapp-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 28px rgba(37,211,102,.6);
+}
+
 /* ---- Logo Y ---- */
 .logo-y { color: #ffffff; font-weight: 800; }
 
