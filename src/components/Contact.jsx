@@ -168,7 +168,7 @@ export default function Contact() {
                     <option value="Installation OS">Installation OS (Windows / Linux)</option>
                     <option value="Câblage réseau & infrastructure">Câblage réseau &amp; infrastructure</option>
                     <option value="Administration systèmes & réseaux">Administration systèmes &amp; réseaux</option>
-                    <option value="Sécurité réseau & audit">Sécurité réseau &amp; audit</option>
+                    <option value="Sécurité réseau & firewall">Sécurité réseau &amp; firewall</option>
                     <option value="Projets IT & transformation digitale">Projets IT &amp; transformation digitale</option>
                     <option value="Création de site web">Création de site web (vitrine, e-commerce…)</option>
                     <option value="Virtualisation & conteneurisation">Virtualisation &amp; conteneurisation</option>
