@@ -6,6 +6,7 @@ import Services from './components/Services'
 import Engagements from './components/Engagements'
 import Process from './components/Process'
 import About from './components/About'
+import Team from './components/Team'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -20,6 +21,7 @@ export default function App() {
         <Engagements />
         <Process />
         <About />
+        <Team />
         <Contact />
       </main>
       <Footer />

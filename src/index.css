@@ -601,6 +601,94 @@ p  { color: var(--muted); }
 }
 
 /* ====================================
+   TEAM
+   ==================================== */
+.team {
+  padding: 100px 0;
+  background: var(--bg-2);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition: transform var(--tr), border-color var(--tr), box-shadow var(--tr);
+}
+.team-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(79,142,247,.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+}
+
+.team-avatar {
+  position: relative;
+  width: 88px;
+  height: 88px;
+}
+.team-avatar-svg {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+}
+.team-avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--color);
+  opacity: .35;
+  animation: ringPulse 3s ease-in-out infinite;
+}
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1);    opacity: .35; }
+  50%       { transform: scale(1.06); opacity: .6;  }
+}
+
+.team-info { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.team-info h3 { font-size: 1.1rem; font-weight: 700; }
+.team-role {
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.team-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 6px;
+}
+.team-skills li {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: .75rem;
+  font-weight: 500;
+  background: rgba(79,142,247,.08);
+  border: 1px solid rgba(79,142,247,.15);
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .team-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
+}
+@media (min-width: 701px) and (max-width: 900px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid > :last-child { grid-column: 1 / -1; max-width: 340px; margin: 0 auto; width: 100%; }
+}
+
+/* ====================================
    FOOTER improvements
    ==================================== */
 .footer { padding: 48px 0 24px; border-top: 1px solid var(--border); }

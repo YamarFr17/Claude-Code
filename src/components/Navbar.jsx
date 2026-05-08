@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { label: 'Services',    href: 'services' },
   { label: 'Engagements', href: 'engagements' },
   { label: 'À propos',    href: 'about' },
+  { label: 'Équipe',      href: 'team' },
 ]
 
 export default function Navbar() {
