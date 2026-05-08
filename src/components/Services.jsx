@@ -72,6 +72,22 @@ const SERVICES = [
       </svg>
     ),
   },
+  {
+    color: '#ec4899',
+    title: 'Création de sites web',
+    desc: "Conception et développement de sites web sur mesure : site vitrine pour présenter votre activité, e-commerce, portfolio ou application web. Design moderne, responsive et optimisé pour le référencement.",
+    features: ['Sites vitrine & portfolio', 'E-commerce & boutiques en ligne', 'Applications web sur mesure', 'Responsive, SEO & performance'],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <path d="M2 7h20"/>
+        <circle cx="5.5" cy="5" r=".75" fill="currentColor" stroke="none"/>
+        <circle cx="8.5" cy="5" r=".75" fill="currentColor" stroke="none"/>
+        <polyline points="8 12 11 15 8 18" transform="translate(0 -6)"/>
+        <line x1="13" y1="12" x2="17" y2="12"/>
+      </svg>
+    ),
+  },
 ]
 
 function ServiceCard({ service, index }) {
