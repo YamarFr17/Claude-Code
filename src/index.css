@@ -157,22 +157,19 @@ p  { color: var(--muted); }
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links a {
   font-size: .9rem; font-weight: 500; color: var(--muted);
-  transition: color var(--tr);
-  position: relative; padding-bottom: 4px;
+  transition: color var(--tr), background var(--tr), padding var(--tr);
+  border-radius: 50px;
 }
 .nav-links a:hover { color: var(--text); }
 
-/* Active indicator — sliding underline */
-.nav-links a::after {
-  content: '';
-  position: absolute; bottom: -2px; left: 0;
-  width: 0; height: 2px;
+/* Active state — same pill style as Contact button */
+.nav-links a.active {
+  color: #fff;
   background: var(--accent);
-  border-radius: 2px;
-  transition: width var(--tr);
+  padding: 7px 18px;
+  font-weight: 600;
+  box-shadow: 0 0 16px rgba(79,142,247,.35);
 }
-.nav-links a.active { color: var(--text); }
-.nav-links a.active::after { width: 100%; }
 
 .btn-nav {
   padding: 9px 22px !important;
