@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Claude-Code/',
+  base: process.env.GITHUB_ACTIONS ? '/Claude-Code/' : '/',
 })
