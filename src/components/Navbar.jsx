@@ -62,7 +62,7 @@ export default function Navbar() {
           <li>
             <a
               href="#contact"
-              className={`btn-nav${activeSection === 'contact' ? ' btn-nav--active' : ''}`}
+              className={activeSection === 'contact' ? 'active' : ''}
               onClick={() => handleClick('contact')}
             >
               Contact
