@@ -73,6 +73,42 @@ const SERVICES = [
     ),
   },
   {
+    color: '#8b5cf6',
+    title: 'Virtualisation & conteneurisation',
+    desc: 'Conception et déploiement d\'environnements virtualisés pour optimiser vos ressources serveurs. Mise en place de VMs, clusters haute disponibilité et conteneurs pour vos applications métiers.',
+    features: ['VMware ESXi / Proxmox / Hyper-V', 'Conteneurs Docker & orchestration', 'Haute disponibilité & snapshots', 'Migration physique vers virtuel (P2V)'],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="2" y="3" width="20" height="8" rx="2"/>
+        <rect x="2" y="13" width="20" height="8" rx="2"/>
+        <path d="M6 7h.01M6 17h.01"/>
+      </svg>
+    ),
+  },
+  {
+    color: '#f97316',
+    title: 'Support & dépannage informatique',
+    desc: 'Intervention rapide sur site ou à distance pour diagnostiquer et résoudre tous vos problèmes informatiques. Panne matérielle, logicielle, virus ou perte de données — nous répondons présents.',
+    features: ['Diagnostic & réparation matérielle', 'Suppression virus & malwares', 'Récupération de données', 'Intervention sur site & télémaintenance'],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
+  },
+  {
+    color: '#10b981',
+    title: 'Formation & accompagnement',
+    desc: 'Sessions de formation adaptées à votre équipe pour maîtriser vos outils informatiques, adopter les bonnes pratiques de sécurité et gagner en autonomie sur votre infrastructure.',
+    features: ['Formation bureautique & outils métiers', 'Sensibilisation à la cybersécurité', 'Prise en main de nouveaux systèmes', 'Accompagnement post-déploiement'],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+      </svg>
+    ),
+  },
+  {
     color: '#ec4899',
     title: 'Création de sites web',
     desc: "Conception et développement de sites web sur mesure : site vitrine pour présenter votre activité, e-commerce, portfolio ou application web. Design moderne, responsive et optimisé pour le référencement.",
