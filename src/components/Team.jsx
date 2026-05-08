@@ -1,22 +1,22 @@
 const MEMBERS = [
   {
     name: 'Joma Alfred',
-    role: 'Technicien Systèmes & Réseaux',
+    role: 'Technicien IT',
     skills: ['Installation OS', 'Administration réseau', 'Support technique'],
     color: '#4f8ef7',
     initials: 'JA',
   },
   {
     name: 'Yamar FARALAHY',
-    role: 'Ingénieur Infrastructure IT',
+    role: 'Technicien IT',
     skills: ['Infogérance', 'Câblage & infrastructure', 'Sécurité réseau'],
     color: '#22c55e',
     initials: 'YF',
   },
   {
     name: 'Stéphano Kevin',
-    role: 'Administrateur Systèmes',
-    skills: ['Virtualisation', 'Cloud & serveurs', 'Transformation digitale'],
+    role: 'Technicien IT',
+    skills: ['Virtualisation', 'Systèmes & serveurs', 'Transformation digitale'],
     color: '#a855f7',
     initials: 'SK',
   },
