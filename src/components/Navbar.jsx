@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import JYSLogo from './JYSLogo'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -16,8 +17,8 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="container nav-inner">
         <a href="#hero" className="logo" onClick={closeMenu}>
-          <span className="logo-icon">⚡</span>
-          <span><span className="logo-y">Y</span>it<strong>Services</strong></span>
+          <JYSLogo size={38} />
+          <span className="logo-wordmark">Yit<strong>Services</strong></span>
         </a>
 
         <ul className={`nav-links${open ? ' open' : ''}`}>

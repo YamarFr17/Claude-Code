@@ -1,8 +1,10 @@
+import JYSLogo from './JYSLogo'
+
 const LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Engagements', href: '#engagements' },
-  { label: 'À propos', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services',     href: '#services' },
+  { label: 'Engagements',  href: '#engagements' },
+  { label: 'À propos',     href: '#about' },
+  { label: 'Contact',      href: '#contact' },
 ]
 
 export default function Footer() {
@@ -13,8 +15,8 @@ export default function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <a href="#hero" className="logo">
-            <span className="logo-icon">⚡</span>
-            <span><span className="logo-y">Y</span>it<strong>Services</strong></span>
+            <JYSLogo size={36} />
+            <span className="logo-wordmark">Yit<strong>Services</strong></span>
           </a>
           <p className="footer-tagline">Sécurisez, optimisez &amp; faites évoluer votre IT.</p>
         </div>
