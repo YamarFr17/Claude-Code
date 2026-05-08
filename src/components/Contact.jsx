@@ -170,6 +170,7 @@ export default function Contact() {
                     <option value="Administration systèmes & réseaux">Administration systèmes &amp; réseaux</option>
                     <option value="Sécurité réseau & audit">Sécurité réseau &amp; audit</option>
                     <option value="Projets IT & transformation digitale">Projets IT &amp; transformation digitale</option>
+                    <option value="Création de site web">Création de site web (vitrine, e-commerce…)</option>
                     <option value="Autre">Autre</option>
                   </select>
                 </div>
