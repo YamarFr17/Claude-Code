@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import JYSLogo from './JYSLogo'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_ITEMS = [
   { label: 'Services',    href: 'services' },
@@ -9,9 +10,18 @@ const NAV_ITEMS = [
 ]
 
 export default function Navbar() {
-  const [scrolled,       setScrolled]       = useState(false)
-  const [open,           setOpen]           = useState(false)
-  const [activeSection,  setActiveSection]  = useState('')
+  const [scrolled,      setScrolled]      = useState(false)
+  const [open,          setOpen]          = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+  const [theme,         setTheme]         = useState(
+    () => localStorage.getItem('theme') || 'light'
+  )
+
+  /* ---- Apply theme to <html> ---- */
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   /* ---- Scroll: sticky style ---- */
   useEffect(() => {
@@ -71,13 +81,16 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button
-          className={`burger${open ? ' open' : ''}`}
-          onClick={() => setOpen(o => !o)}
-          aria-label="Menu"
-        >
-          <span /><span /><span />
-        </button>
+        <div className="nav-actions">
+          <ThemeToggle theme={theme} onToggle={() => setTheme(t => t === 'light' ? 'dark' : 'light')} />
+          <button
+            className={`burger${open ? ' open' : ''}`}
+            onClick={() => setOpen(o => !o)}
+            aria-label="Menu"
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </div>
     </nav>
   )
