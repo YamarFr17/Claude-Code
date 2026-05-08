@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 
 const CONTACTS = [
-  { name: 'Yamar FARALAHY', phone: '261374671845' },
-  { name: 'Joma Alfred',    phone: '261329590839' },
+  { name: 'Yamar FARALAHY',  phone: '261374671845' },
+  { name: 'Joma Alfred',     phone: '261329590839' },
+  { name: 'Stéphano Kevin',  phone: '261379110668' },
 ]
 
 const WaIcon = () => (
