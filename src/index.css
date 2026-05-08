@@ -485,6 +485,7 @@ p  { color: var(--muted); }
 .form-group input,
 .form-group select,
 .form-group textarea {
+  width: 100%;
   background: var(--bg-subtle); border: 1.5px solid var(--border);
   border-radius: var(--radius-sm); padding: 11px 14px;
   color: var(--text); font-family: inherit; font-size: .93rem;
@@ -849,6 +850,8 @@ p  { color: var(--muted); }
   .team-grid        { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
   .team-grid > :last-child { grid-column: auto; max-width: 100%; }
   .hero-float       { display: none; }
+  .whatsapp-wrap    { left: 16px; right: auto; align-items: flex-start; }
+  .whatsapp-menu    { left: 0; right: auto; }
 }
 
 @media (max-width: 480px) {
