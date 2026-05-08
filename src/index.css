@@ -155,8 +155,24 @@ p  { color: var(--muted); }
 .logo strong { color: var(--accent); }
 
 .nav-links { display: flex; align-items: center; gap: 32px; }
-.nav-links a { font-size: .9rem; font-weight: 500; color: var(--muted); transition: color var(--tr); }
+.nav-links a {
+  font-size: .9rem; font-weight: 500; color: var(--muted);
+  transition: color var(--tr);
+  position: relative; padding-bottom: 4px;
+}
 .nav-links a:hover { color: var(--text); }
+
+/* Active indicator — sliding underline */
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width var(--tr);
+}
+.nav-links a.active { color: var(--text); }
+.nav-links a.active::after { width: 100%; }
 
 .btn-nav {
   padding: 9px 22px !important;
