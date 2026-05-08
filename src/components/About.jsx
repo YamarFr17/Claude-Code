@@ -27,7 +27,7 @@ export default function About() {
               </svg>
             </div>
             <div className="about-card-text">
-              <strong>Technicien IT — YitServices</strong>
+              <strong>Technicien IT — itServices</strong>
               <span>Systèmes &amp; Réseaux</span>
             </div>
           </div>
@@ -57,10 +57,10 @@ export default function About() {
         </div>
 
         <div className="about-text">
-          <span className="tag">À propos de YitServices</span>
+          <span className="tag">À propos de itServices</span>
           <h2>Une expertise IT au service de votre réussite</h2>
           <p>
-            YitServices est né de la conviction que chaque structure — petite ou grande — mérite
+            itServices est né de la conviction que chaque structure — petite ou grande — mérite
             un accès à des services informatiques de qualité professionnelle, sans complexité
             et à prix juste.
           </p>

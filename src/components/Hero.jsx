@@ -22,7 +22,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-sub">
-          YitServices accompagne particuliers et entreprises dans tous leurs projets informatiques —
+          itServices accompagne particuliers et entreprises dans tous leurs projets informatiques —
           installation OS, câblage réseau, infogérance et transformation digitale.
         </p>
 

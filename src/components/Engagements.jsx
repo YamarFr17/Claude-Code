@@ -73,7 +73,7 @@ export default function Engagements() {
     <section className="engagements" id="engagements">
       <div className="container">
         <div className="section-header">
-          <span className="tag">Pourquoi YitServices</span>
+          <span className="tag">Pourquoi itServices</span>
           <h2>Nos engagements envers vous</h2>
           <p>Des valeurs concrètes qui guident chaque intervention et chaque relation client.</p>
         </div>

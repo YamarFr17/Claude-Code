@@ -44,7 +44,7 @@ export default function Navbar() {
       <div className="container nav-inner">
         <a href="#hero" className="logo" onClick={() => setOpen(false)}>
           <JYSLogo size={38} />
-          <span className="logo-wordmark">Yit<strong>Services</strong></span>
+          <span className="logo-wordmark">it<strong>Services</strong></span>
         </a>
 
         <ul className={`nav-links${open ? ' open' : ''}`}>

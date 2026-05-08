@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="footer-brand">
           <a href="#hero" className="logo">
             <JYSLogo size={36} />
-            <span className="logo-wordmark">Yit<strong>Services</strong></span>
+            <span className="logo-wordmark">it<strong>Services</strong></span>
           </a>
           <p className="footer-tagline">Sécurisez, optimisez &amp; faites évoluer votre IT.</p>
         </div>
@@ -28,7 +28,7 @@ export default function Footer() {
         </nav>
 
         <div className="footer-bottom">
-          <p className="footer-copy">© {year} YitServices — Tous droits réservés</p>
+          <p className="footer-copy">© {year} itServices — Tous droits réservés</p>
           <p className="footer-copy">Devis gratuit · Réponse sous 24h · Sur site &amp; à distance</p>
         </div>
       </div>
