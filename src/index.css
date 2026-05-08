@@ -18,7 +18,10 @@
   --tr:       .25s cubic-bezier(.4,0,.2,1);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
@@ -26,6 +29,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a  { text-decoration: none; color: inherit; }
@@ -87,8 +91,8 @@ p  { color: var(--muted); }
 /* ---- Back to top ---- */
 .back-to-top {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: 20px;
+  right: 16px;
   z-index: 200;
   width: 46px;
   height: 46px;
